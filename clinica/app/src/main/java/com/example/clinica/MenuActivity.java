@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MenuActivity extends AppCompatActivity {
-    Intent citas,anular,cerrar;
+    Intent citas,anular,cerrar,preguntas;
     FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +60,11 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         Button atencion = (Button) findViewById(R.id.btnAtencion);
-        btncitas.setOnClickListener(new View.OnClickListener() {
+        atencion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                citas = new Intent(getApplicationContext(), AreasActivity.class);
-                startActivity(citas);
+                preguntas = new Intent(getApplicationContext(), AreasActivity.class);
+                startActivity(preguntas);
 
             }
         });

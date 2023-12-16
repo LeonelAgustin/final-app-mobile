@@ -50,7 +50,7 @@
         app:srcCompat="@drawable/swisslogo" />
 
     <ImageButton
-        android:id="@+id/cerrarbtn2"
+        android:id="@+id/btnback"
         android:layout_width="59dp"
         android:layout_height="57dp"
         android:background="#00FFFFFF"

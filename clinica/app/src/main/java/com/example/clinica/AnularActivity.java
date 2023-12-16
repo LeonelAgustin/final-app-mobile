@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,11 +68,11 @@ public class AnularActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String doctor = document.getString("doctor");
                                 String especialidad = document.getString("especialidad");
-
+                                String costo = document.getString("costo");
                                 String horario = document.getString("horario");
                                 String fecha = document.getString("fecha");
 
-                                Cita cita = new Cita(doctor, especialidad, horario, fecha);
+                                Cita cita = new Cita(doctor, especialidad, horario, fecha,costo);
                                 citas.add(cita);
                             }
                             CitaAdapter adapter = new CitaAdapter(citas);
@@ -110,6 +111,14 @@ public class AnularActivity extends AppCompatActivity {
             }
         });
 
+        ImageButton back = findViewById(id.btnback);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                volver = new Intent(getApplicationContext(),MenuActivity.class);
+                startActivity(volver);
+            }
+        });
     }
 
     public class Cita {
@@ -118,15 +127,17 @@ public class AnularActivity extends AppCompatActivity {
 
         private String horario;
         private String fecha;
+        private String costo;
 
         public Cita() {}
 
-        public Cita(String doctor, String especialidad, String horario, String fecha) {
+        public Cita(String doctor, String especialidad, String horario, String fecha, String costo) {
             this.doctor = doctor;
             this.especialidad = especialidad;
 
             this.horario = horario;
             this.fecha = fecha;
+            this.costo = costo;
         }
 
         public String getDoctor() {
@@ -139,11 +150,14 @@ public class AnularActivity extends AppCompatActivity {
 
 
         public String getHorario() {
-            return "Hora de consulta:"+horario;
+            return "Hora de consulta: "+horario;
         }
 
         public String getFecha() {
             return "Fecha: "+fecha;
+        }
+        public String getCosto() {
+            return "Costo : "+costo+" USSD";
         }
     }
 
@@ -177,6 +191,7 @@ public class AnularActivity extends AppCompatActivity {
             private TextView especialidadTextView;
             private TextView nombreTextView;
             private TextView horarioTextView;
+            private TextView costoTextView;
 
             public CitaViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -184,6 +199,7 @@ public class AnularActivity extends AppCompatActivity {
                 especialidadTextView = itemView.findViewById(R.id.text_view_especialidad);
                 nombreTextView = itemView.findViewById(R.id.text_view_nombre);
                 horarioTextView = itemView.findViewById(R.id.text_view_horario);
+                costoTextView = itemView.findViewById(id.text_view_costo);
             }
 
             public void bind(Cita cita) {
@@ -191,6 +207,7 @@ public class AnularActivity extends AppCompatActivity {
                 especialidadTextView.setText(cita.getEspecialidad());
                 nombreTextView.setText(cita.getFecha());
                 horarioTextView.setText(cita.getHorario());
+                costoTextView.setText(cita.getCosto());
             }
         }
     }

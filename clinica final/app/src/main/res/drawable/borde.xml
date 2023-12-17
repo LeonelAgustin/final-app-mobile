@@ -1,0 +1,11 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/blanco_semi_transparente" /> <!-- Color de fondo semi-transparente -->
+            <stroke
+                android:width="2dp"
+                android:color="#0D8AA6" /> <!-- Color del borde -->
+            <corners android:radius="7dp" /> <!-- Radio de las esquinas -->
+        </shape>
+    </item>
+</layer-list>
